@@ -1,0 +1,50 @@
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="cevalidator.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
+    <style>
+        .form-group{display: block;}
+    </style>
+</head>
+<body>
+
+<hr/>
+<div class="container">
+    <div class="container-fluid">
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h1 class="panel-title">Examples</h1>
+            </div>
+            <div class="panel-body">
+                <form class="validate" action="">
+                    <div class="row">
+                        <label class="col-md-4 form-group">
+                            Required
+                            <input class="form-control" type="text" name="name" data-validate="required">
+                        </label>
+                        <label class="col-md-4 form-group">
+                            MinLength
+                            <input class="form-control" type="text" name="name" data-validate="3">
+                        </label>
+                        <label class="col-md-4 form-group">
+                            E-mail
+                            <input class="form-control" type="text" name="name" data-validate="email">
+                        </label>
+                    </div>
+                    <div class="text-right">
+                        <button class="btn btn-success">Enviar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+<hr/>
+
+</body>
+</html>
