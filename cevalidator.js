@@ -19,8 +19,7 @@ $(function () {
 
         $('.cevalidator_tooltip').remove();
 
-        form
-            .removeClass('validate-error');
+        form.removeClass('validate-error');
 
         var errors = [];
         form.find('[data-validate]').each(function () {
@@ -31,10 +30,9 @@ $(function () {
 
         if (errors.length) {
             form.addClass('validate-error');
-            if (cevalidator.autofocus) {
+            if (cevalidator.autofocus)
                 errors[0].focus();
-                cevalidator.hasError(errors[0]);
-            }
+            cevalidator.hasError(errors[0]);
 
             // PREVENT SUBMIT
             return false;
@@ -71,11 +69,13 @@ var cevalidator = {
     autofocus: true,
     tooltipEnabled: true,
     validate: function (obj) {
-        var rule = obj.data('validate').toString().toLowerCase().trim();
+        var rules = obj.data('validate').toString().toLowerCase().trim().split('|');
 
         // REMOVE PLACEHOLDER AS VALUE
         if (obj.attr('placeholder') == obj.val().trim())
             obj.val('');
+
+        var success = true;
 
         if (obj.attr('type') == 'checkbox')
             return this.rules.checkbox(obj);
@@ -83,18 +83,31 @@ var cevalidator = {
         else if (obj.attr('type') == 'radio')
             return this.rules.radio(obj);
 
-        else if (parseInt(rule))
-            return this.rules.minlength(obj, parseInt(rule));
+        // Validate custom rules
+        for (var i in rules) {
+            var rule = rules[i];
 
-        else if (rule.indexOf('match') >= 0 || rule.indexOf('equal') >= 0)
-            return this.rules.match(obj);
+            if (parseInt(rule)) {
+                if (!this.rules.minlength(obj, parseInt(rule)))
+                    success = false;
+            }
 
-        // IF CUSTOM VALIDATE EXISTS
-        else if (this.rules[rule])
-            return this.rules[rule](obj);
+            else if (rule.indexOf('match') >= 0) {
+                if (!this.rules.match(obj))
+                    success = false;
+            }
 
-        else
-            return regex(obj);
+            // IF CUSTOM VALIDATE EXISTS
+            else if (this.rules[rule]) {
+                if (!this.rules[rule](obj))
+                    success = false;
+            }
+
+            else if (!this.rules.regex(obj))
+                success = false;
+        }
+
+        return success;
     },
     rules: {
         checkbox: function (obj) {
@@ -290,7 +303,7 @@ var cevalidator = {
             }
             return cevalidator.hasError(obj, 'Os campos devem ser iguais');
         },
-        regex: function () {
+        regex: function (obj) {
             var rule = new RegExp(obj.attr('data-validate'));
             var value = obj.val();
 
