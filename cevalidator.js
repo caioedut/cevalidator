@@ -48,7 +48,7 @@ var cevalidator = {
     autofocus: true,
     tooltipEnabled: true,
     validate: function (obj) {
-        var rules = obj.data('validate').toString().toLowerCase().trim().split('|');
+        var rules = obj.data('validate').toString().split('|');
 
         // REMOVE PLACEHOLDER AS VALUE
         if (obj.attr('placeholder') == obj.val().trim())
@@ -64,7 +64,7 @@ var cevalidator = {
 
         // Validate custom rules
         for (var i in rules) {
-            var rule = rules[i];
+            var rule = rules[i].toLowerCase().trim();
 
             if (parseInt(rule)) {
                 if (!this.rules.minlength(obj, parseInt(rule)))
