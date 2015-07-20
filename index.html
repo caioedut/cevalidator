@@ -1,5 +1,7 @@
 <html>
 <head>
+    <meta http-equiv="Content-type" content="text/html;charset=utf-8" />
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="cevalidator.js"></script>
@@ -8,6 +10,13 @@
     <style>
         .form-group{display: block;}
     </style>
+    <script>
+        $(function() {
+            $('form').submit(function() {
+                return $(this).validate();
+            });
+        });
+    </script>
 </head>
 <body>
 
@@ -20,7 +29,7 @@
                 <h1 class="panel-title">Examples</h1>
             </div>
             <div class="panel-body">
-                <form class="validate" action="">
+                <form class="" action="">
                     <div class="row">
                         <label class="col-md-4 form-group">
                             Required
