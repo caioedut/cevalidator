@@ -15,28 +15,7 @@ $(function () {
 
     // Validdation On Submit FORM
     app.on('submit', 'form.validate', function (e) {
-        var form = $(e.currentTarget);
-
-        $('.cevalidator_tooltip').remove();
-
-        form.removeClass('validate-error');
-
-        var errors = [];
-        form.find('[data-validate]').each(function () {
-            var input = $(this);
-            if (!cevalidator.validate(input))
-                errors.push(input);
-        });
-
-        if (errors.length) {
-            form.addClass('validate-error');
-            if (cevalidator.autofocus)
-                errors[0].focus();
-            cevalidator.hasError(errors[0]);
-
-            // PREVENT SUBMIT
-            return false;
-        }
+        return $(e.currentTarget).validate();
     });
 
     // Validdation On Keypress INPUTS
@@ -120,7 +99,7 @@ var cevalidator = {
             var form = obj.closest('form');
             if (form.find('input[type="radio"][name="' + name + '"]:checked').length)
                 return cevalidator.hasSuccess(obj);
-            return cevalidator.hasError(obj, 'Selecione uma opção');
+            return cevalidator.hasError(obj, 'Selecione uma opçãoo');
         },
         minlength: function (obj, minlength) {
             var value = obj.val().toString().trim();
@@ -348,3 +327,34 @@ var cevalidator = {
         }
     }
 };
+
+
+jQuery.fn.validate = function( options ) {
+    cevalidator = $.extend(cevalidator, $.fn.validate.defaults, options);
+
+    var form = $(this);
+
+    $('.cevalidator_tooltip').remove();
+
+    form.removeClass('validate-error');
+
+    var errors = [];
+    form.find('[data-validate]').each(function () {
+        var input = $(this);
+        if (!cevalidator.validate(input))
+            errors.push(input);
+    });
+
+    if (errors.length) {
+        form.addClass('validate-error');
+        if (cevalidator.autofocus)
+            errors[0].focus();
+        cevalidator.hasError(errors[0]);
+
+        // PREVENT SUBMIT
+        return false;
+    }
+
+    return true;
+};
+$.fn.validate.defaults = {};
