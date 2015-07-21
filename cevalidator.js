@@ -99,16 +99,16 @@ var cevalidator = {
             var form = obj.closest('form');
             if (form.find('input[type="radio"][name="' + name + '"]:checked').length)
                 return cevalidator.hasSuccess(obj);
-            return cevalidator.hasError(obj, 'Selecione uma opÁ„oo');
+            return cevalidator.hasError(obj, 'Selecione uma op√ß√£oo');
         },
         minlength: function (obj, minlength) {
             var value = obj.val().toString().trim();
 
             if (value.length < minlength) {
                 if (minlength <= 1)
-                    return cevalidator.hasError(obj, 'Este campo È obrigatÛrio');
+                    return cevalidator.hasError(obj, 'Este campo √© obrigat√≥rio');
                 else
-                    return cevalidator.hasError(obj, 'Este campo deve conter no<br/>mÌnimo ' + minlength + ' caracteres');
+                    return cevalidator.hasError(obj, 'Este campo deve conter no<br/>m√≠nimo ' + minlength + ' caracteres');
             }
             return cevalidator.hasSuccess(obj);
         },
@@ -120,7 +120,7 @@ var cevalidator = {
 
             var rule = /^[\w\.\-]{3,}\@[\w\.\-]{3,}\.[a-zA-Z]{2,}$/;
             if (!rule.test(value))
-                return cevalidator.hasError(obj, 'Este e-mail n„o È v·lido');
+                return cevalidator.hasError(obj, 'Este e-mail n√£o √© v√°lido');
             return cevalidator.hasSuccess(obj);
         },
         datetime: function (obj) {
@@ -128,7 +128,7 @@ var cevalidator = {
 
             var matches = value.match(/^(\d{2})\/(\d{2})\/(\d{4}) (\d{2}):(\d{2})(:\d{2})?$/);
             if (matches === null) {
-                return cevalidator.hasError(obj, 'Preencha uma data e hor·rio v·lidos');
+                return cevalidator.hasError(obj, 'Preencha uma data e hor√°rio v√°lidos');
             } else {
                 var year = parseInt(matches[3], 10);
                 var month = parseInt(matches[2], 10) - 1; // months are 0-11
@@ -137,7 +137,7 @@ var cevalidator = {
                 var minute = parseInt(matches[5], 10);
                 var date = new Date(year, month, day, hour, minute);
                 if (date.getFullYear() !== year || date.getMonth() != month || date.getDate() !== day || date.getHours() !== hour || date.getMinutes() !== minute) {
-                    return cevalidator.hasError(obj, 'Preencha uma data e hor·rio v·lidos');
+                    return cevalidator.hasError(obj, 'Preencha uma data e hor√°rio v√°lidos');
                 }
                 return cevalidator.hasSuccess(obj);
             }
@@ -152,14 +152,14 @@ var cevalidator = {
                     return cevalidator.hasSuccess(obj);
                 }
             }
-            return cevalidator.hasError(obj, 'Preencha uma data v·lida');
+            return cevalidator.hasError(obj, 'Preencha uma data v√°lida');
         },
         time: function (obj) {
             var rule = /^[0-9]{2}:[0-9]{2}(:\d{2})?$/;
             var value = obj.val();
 
             if (!rule.test(value))
-                return cevalidator.hasError(obj, 'Este formato de hora n„o È v·lido');
+                return cevalidator.hasError(obj, 'Este formato de hora n√£o √© v√°lido');
             return cevalidator.hasSuccess(obj);
         },
         cpf: function (obj) {
@@ -169,7 +169,7 @@ var cevalidator = {
             Soma = 0;
 
             if (value == '00000000000')
-                return cevalidator.hasError(obj, 'Este CPF n„o È v·lido');
+                return cevalidator.hasError(obj, 'Este CPF n√£o √© v√°lido');
 
             for (var i = 1; i <= 9; i++)
                 Soma = Soma + parseInt(value.substring(i - 1, i)) * (11 - i);
@@ -179,7 +179,7 @@ var cevalidator = {
                 Resto = 0;
 
             if (Resto != parseInt(value.substring(9, 10)))
-                return cevalidator.hasError(obj, 'Este CPF n„o È v·lido');
+                return cevalidator.hasError(obj, 'Este CPF n√£o √© v√°lido');
 
             Soma = 0;
             for (i = 1; i <= 10; i++) Soma = Soma + parseInt(value.substring(i - 1, i)) * (12 - i);
@@ -189,13 +189,13 @@ var cevalidator = {
                 Resto = 0;
 
             if (Resto != parseInt(value.substring(10, 11)))
-                return cevalidator.hasError(obj, 'Este CPF n„o È v·lido');
+                return cevalidator.hasError(obj, 'Este CPF n√£o √© v√°lido');
 
             return cevalidator.hasSuccess(obj);
         },
         cnpj: function (obj) {
             var cnpj = obj.val().replace(/\D/g, '');
-            var validate_msg = 'Este CNPJ n„o È v·lido';
+            var validate_msg = 'Este CNPJ n√£o √© v√°lido';
 
             if (cnpj === '' || cnpj.length != 14 || cnpj == '00000000000000' || cnpj == '11111111111111' || cnpj == '22222222222222' || cnpj == '33333333333333' || cnpj == '44444444444444' || cnpj == '55555555555555' || cnpj == '66666666666666' || cnpj == '77777777777777' || cnpj == '88888888888888' || cnpj == '99999999999999')
                 return cevalidator.hasError(obj, validate_msg);
@@ -235,12 +235,12 @@ var cevalidator = {
             var value = obj.val().replace(/\D/g, '');
 
             if (!rule.test(value))
-                return cevalidator.hasError(obj, 'Este telefone n„o È v·lido');
+                return cevalidator.hasError(obj, 'Este telefone n√£o √© v√°lido');
             return cevalidator.hasSuccess(obj);
         },
         numeric: function (obj) {
             if ((obj.val().length <= 0 || !parseInt(obj.val())) && obj.val() != '0')
-                return cevalidator.hasError(obj, 'Este valor n„o È um n˙mero inteiro');
+                return cevalidator.hasError(obj, 'Este valor n√£o √© um n√∫mero inteiro');
             return cevalidator.hasSuccess(obj);
         },
         cep: function (obj) {
@@ -248,7 +248,7 @@ var cevalidator = {
             var value = obj.val();
 
             if (!rule.test(value))
-                return cevalidator.hasError(obj, 'Este CEP n„o È v·lido');
+                return cevalidator.hasError(obj, 'Este CEP n√£o √© v√°lido');
             return cevalidator.hasSuccess(obj);
         },
         url: function (obj) {
@@ -256,7 +256,7 @@ var cevalidator = {
             var value = obj.val().replace('www.');
 
             if (!rule.test(value))
-                return cevalidator.hasError(obj, 'Este URL n„o È v·lido');
+                return cevalidator.hasError(obj, 'Este URL n√£o √© v√°lido');
             return cevalidator.hasSuccess(obj);
         },
         decimal: function (obj) {
@@ -264,7 +264,7 @@ var cevalidator = {
             var value = obj.val();
 
             if (!rule.test(value))
-                return cevalidator.hasError(obj, 'Este preÁo n„o È v·lido');
+                return cevalidator.hasError(obj, 'Este pre√ßo n√£o √© v√°lido');
             return cevalidator.hasSuccess(obj);
         },
         match: function (obj) {
@@ -313,7 +313,7 @@ var cevalidator = {
             if (obj.attr('data-message'))
                 message = obj.attr('data-message');
             else if (!message)
-                message = 'Este campo È obrigatÛrio';
+                message = 'Este campo √© obrigat√≥rio';
 
             var tooltip_pos = obj.offset();
 
