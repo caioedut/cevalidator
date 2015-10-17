@@ -3,6 +3,7 @@
  *
  * @author Caio Eduardo <caioedut@outlook.com>
  * @date 2013-10-01
+ * @git https://github.com/caioedut/CEValidator
  */
 
 $(function () {
@@ -278,7 +279,7 @@ var cevalidator = {
     messages: {
         checkbox: "Este campo deve ser marcado",
         radio: "Selecione uma opção",
-        minlength: function(input) {
+        minlength: function (input) {
             return "Este campo deve conter no mínimo " + input.attr('minlength') + " caracteres";
         },
         required: "Este campo é obrigatório",
@@ -320,7 +321,7 @@ var cevalidator = {
 };
 
 
-jQuery.fn.validate = function( options ) {
+jQuery.fn.validate = function (options) {
     cevalidator = $.extend(cevalidator, $.fn.validate.defaults, options);
 
     var form = $(this);
