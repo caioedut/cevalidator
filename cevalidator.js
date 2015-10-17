@@ -102,28 +102,20 @@ var cevalidator = {
     },
     rules: {
         checkbox: function (obj) {
-            if (!obj.is(':checked'))
-                return false;
-
-            return true;
+            return obj.is(':checked');
         },
         radio: function (obj) {
             var name = obj.attr('name');
             var form = obj.closest('form');
-            if (!form.find('input[type="radio"][name="' + name + '"]:checked').length)
-                return false;
 
-            return true;
+            return form.find('input[type="radio"][name="' + name + '"]:checked').length;
         },
         minlength: function (obj, minlength) {
             var value = obj.val().toString().trim();
 
             obj.attr('minlength', minlength);
 
-            if (value.length < minlength)
-                return false;
-
-            return true;
+            return (value.length > minlength);
         },
         required: function (obj) {
             return this.minlength(obj, 1);
@@ -131,11 +123,8 @@ var cevalidator = {
         email: function (obj) {
             var value = obj.val().replace(/\s/g, '');
 
-            var rule = /^[\w\.\-]{3,}\@[\w\.\-]{3,}\.[a-zA-Z]{2,}$/;
-            if (!rule.test(value))
-                return false;
-
-            return true;
+            var rule = /^[\w\.\-]{3,}@[\w\.\-]{3,}\.[a-zA-Z]{2,}$/;
+            return rule.test(value);
         },
         datetime: function (obj) {
             var value = obj.val();
@@ -173,10 +162,7 @@ var cevalidator = {
             var rule = /^[0-9]{2}:[0-9]{2}(:\d{2})?$/;
             var value = obj.val();
 
-            if (!rule.test(value))
-                return false;
-
-            return true;
+            return rule.test(value);
         },
         cpf: function (obj) {
             var value = obj.val().replace(/\D/g, '');
@@ -204,14 +190,10 @@ var cevalidator = {
             if (Resto == 10 || Resto == 11)
                 Resto = 0;
 
-            if (Resto != parseInt(value.substring(10, 11)))
-                return false;
-
-            return true;
+            return (Resto == parseInt(value.substring(10, 11)));
         },
         cnpj: function (obj) {
             var cnpj = obj.val().replace(/\D/g, '');
-            var validate_msg = 'Este CNPJ não é válido';
 
             if (cnpj === '' || cnpj.length != 14 || cnpj == '00000000000000' || cnpj == '11111111111111' || cnpj == '22222222222222' || cnpj == '33333333333333' || cnpj == '44444444444444' || cnpj == '55555555555555' || cnpj == '66666666666666' || cnpj == '77777777777777' || cnpj == '88888888888888' || cnpj == '99999999999999')
                 return false;
@@ -240,55 +222,39 @@ var cevalidator = {
                     pos = 9;
             }
             resultado = soma % 11 < 2 ? 0 : 11 - soma % 11;
-            if (resultado != digitos.charAt(1))
-                return false;
 
-            return true;
+            return (resultado == digitos.charAt(1));
         },
         phone: function (obj) {
             var rule = /^\d{10}\d?$/;
             var value = obj.val().replace(/\D/g, '');
 
-            if (!rule.test(value))
-                return false;
-
-            return true;
+            return rule.test(value);
         },
         numeric: function (obj) {
-            if ((obj.val().length <= 0 || !parseInt(obj.val())) && obj.val() != '0')
-                return false;
-
-            return true;
+            var value = obj.val();
+            return (value.length > 0 && parseInt(value)) || value == '0';
         },
         cep: function (obj) {
             var rule = /^\d{5}-\d{3}$/;
             var value = obj.val();
 
-            if (!rule.test(value))
-                return false;
-
-            return true;
+            return rule.test(value);
         },
         url: function (obj) {
             var rule = /^(ht|f)tps?:\/\/\w+([\.\-\w]+)?\.([a-z]{2,4})(:\d{2,5})?(\/.*)?$/i;
             var value = obj.val().replace('www.');
 
-            if (!rule.test(value))
-                return false;
-
-            return true;
+            return rule.test(value);
         },
         decimal: function (obj) {
-            var rule = /^\d{1,}(\.\d{2})?$/;
+            var rule = /^\d+(\.\d{2})?$/;
             var value = obj.val();
 
-            if (!rule.test(value))
-                return false;
-
-            return true;
+            return rule.test(value);
         },
         match: function (obj) {
-            var rule = /\([\"|\'](.+)[\"|\']\)/;
+            var rule = /\(["|'](.+)["|']\)/;
             var value = obj.attr('data-validate').trim();
 
             var input_name = value.match(rule);
@@ -306,10 +272,7 @@ var cevalidator = {
             var rule = new RegExp(obj.attr('data-validate'));
             var value = obj.val();
 
-            if (!rule.test(value))
-                return false;
-
-            return true;
+            return rule.test(value);
         }
     },
     messages: {
@@ -335,12 +298,13 @@ var cevalidator = {
     },
     showTooltip: function (obj, rule) {
         if (this.tooltip) {
+
+            var message = 'Este campo é obrigatório';
+
             if (obj.data('message'))
                 message = obj.attr('message');
             else if (this.messages[rule])
                 message = typeof this.messages[rule] == 'function' ? this.messages[rule](obj) : this.messages[rule];
-            else
-                message = 'Este campo é obrigatório';
 
             var tooltip_pos = obj.offset();
 
