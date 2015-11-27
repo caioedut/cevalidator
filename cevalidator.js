@@ -102,6 +102,9 @@ var cevalidator = {
         return success;
     },
     rules: {
+        success: function () {
+            return true;
+        },
         checkbox: function (obj) {
             return obj.is(':checked');
         },
