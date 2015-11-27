@@ -67,7 +67,7 @@ Rules:
 * url
 * decimal (float values)
 * match (matches with other input name in the same form, eg.: data-validate="match('password1')" )
-* regex (a custom regex, eg.: data-validate="/d{3,5}" )
+* regex (a custom regex, eg.: data-validate="\d{3,5}" )
 
 ### Custom validation rule
 You can create your custom validation rule with a default message, like
