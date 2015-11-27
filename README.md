@@ -52,22 +52,22 @@ You can use a pre formatted validation rule, using the ``` data-validate="ruleNa
 
 Rules: 
 * required
-* checkbox
-* radio
+* checkbox (for input type="checkbox" with data-validate="required")
+* radio (for input type="radio" with data-validate="required")
 * minlength
 * email
-* datetime
-* date
+* datetime (default: dddd/mm/yyyy hh:ii:ss)
+* date (default: dddd/mm/yyyy)
 * time
 * cpf
 * cnpj
-* phone
-* numeric
-* cep
+* phone (numeric with 10~11 digits)
+* numeric (numeric including zero)
+* cep (numeric with 8 digits)
 * url
-* decimal
-* match
-* regex
+* decimal (float values)
+* match (matches with other input name in the same form, eg.: data-validate="match('password1')" )
+* regex (a custom regex, eg.: data-validate="/d{3,5}" )
 
 ### Custom validation rule
 You can create your custom validation rule with a default message, like
