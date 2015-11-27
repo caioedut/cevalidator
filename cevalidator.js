@@ -101,6 +101,14 @@ var cevalidator = {
 
         return success;
     },
+    addRule: function (name, fn, message) {
+        if (typeof fn == 'function') {
+            this.rules[name] = fn;
+            if (message) {
+                this.messages[name] = message;
+            }
+        }
+    },
     rules: {
         success: function () {
             return true;
