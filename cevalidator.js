@@ -127,7 +127,7 @@ var cevalidator = {
 
             obj.attr('minlength', minlength);
 
-            return (value.length > minlength);
+            return (value.length >= minlength);
         },
         required: function (obj) {
             return this.minlength(obj, 1);
