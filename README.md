@@ -82,3 +82,14 @@ cevalidator.addRule("myNewRule", function(inputElem) {
     <input type="text" data-validate="myNewRule" />
 </form>
 ```
+
+### Custom Success/Error actions
+You can create custom functions to run when trigger success or error.
+```sh
+cevalidator.onSuccess = function (inputElem) {
+    inputElem.removeClass('error').addClass('success');
+};
+cevalidator.onError = function (inputElem) {
+    inputElem.removeClass('success').addClass('error');
+};
+```
