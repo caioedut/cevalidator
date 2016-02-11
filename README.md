@@ -72,13 +72,10 @@ Rules:
 ### Custom validation rule
 You can create your custom validation rule with a default message, like
 ```sh
-cevalidator.rules.myNewRule = function(inputElem) {
+cevalidator.addRule("myNewRule", function(inputElem) {
     // DO SOMETHING
     return true; // OR FALSE
-};
-cevalidator.messages.myNewRule = function(inputElem) {
-    return "This field is required.";
-};
+}, "This field is required.");
 ```
 ```sh
 <form id="myForm" class="validate validate-tooltip">
