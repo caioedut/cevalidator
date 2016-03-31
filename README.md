@@ -30,7 +30,7 @@ $(document).ready(function() {
 });
 ```
 
-## Tooltips and rrror messages
+## Tooltips and error messages
 ### Tooltip
 You can ADD a tooltip error using the class validate-tooltip in form tag. All default validator have a default message.
 ```sh
@@ -56,8 +56,8 @@ Rules:
 * radio (for input type="radio" with data-validate="required")
 * minlength
 * email
-* datetime (default: dddd/mm/yyyy hh:ii:ss)
-* date (default: dddd/mm/yyyy)
+* datetime (default: dd/mm/yyyy hh:ii:ss)
+* date (default: dd/mm/yyyy)
 * time
 * cpf
 * cnpj
