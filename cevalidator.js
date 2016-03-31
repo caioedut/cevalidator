@@ -314,7 +314,7 @@ var cevalidator = {
             var message = 'Este campo é obrigatório';
 
             if (obj.data('message'))
-                message = obj.attr('message');
+                message = obj.data('message');
             else if (this.messages[rule])
                 message = typeof this.messages[rule] == 'function' ? this.messages[rule](obj) : this.messages[rule];
 
