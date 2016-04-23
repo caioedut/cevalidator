@@ -135,7 +135,7 @@ var cevalidator = {
         email: function (obj) {
             var value = obj.val().replace(/\s/g, '');
 
-            var rule = /^[\w\.\-]{3,}@[\w\.\-]{3,}\.[a-zA-Z]{2,}$/;
+            var rule = /^[\w\.\-]{2,}@[\w\.\-]{3,}\.[a-zA-Z]{2,}$/;
             return rule.test(value);
         },
         datetime: function (obj) {
