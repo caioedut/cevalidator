@@ -133,9 +133,27 @@ var cevalidator = {
             return this.minlength(obj, 1);
         },
         email: function (obj) {
-            var value = obj.val().replace(/\s/g, '');
+            var value = obj.val().trim();
+            //var rule = /^[\w\.\-]{2,}@[\w\.\-]{3,}\.[a-zA-Z]{2,}$/;
 
-            var rule = /^[\w\.\-]{2,}@[\w\.\-]{3,}\.[a-zA-Z]{2,}$/;
+            /**
+             * RFC822 Spec
+             */
+            var qtext = '[^\\x0d\\x22\\x5c\\x80-\\xff]';
+            var dtext = '[^\\x0d\\x5b-\\x5d\\x80-\\xff]';
+            var atom = '[^\\x00-\\x20\\x22\\x28\\x29\\x2c\\x2e\\x3a-\\x3c\\x3e\\x40\\x5b-\\x5d\\x7f-\\xff]+';
+            var pair = '\\x5c[\\x00-\\x7f]';
+
+            var domain_literal = "\\x5b(" + dtext + "|" + pair + ")*\\x5d";
+            var quoted_string = "\\x22(" + qtext + "|" + pair + ")*\\x22";
+            var sub_domain = "(" + atom + "|" + domain_literal + ")";
+            var word = "(" + atom + "|" + quoted_string + ")";
+            var domain = sub_domain + "(\\x2e" + sub_domain + ")*";
+            var local_part = word + "(\\x2e" + word + ")*";
+
+            var expression = "^" + local_part + "\\x40" + domain + "$";
+
+            var rule = new RegExp(expression);
             return rule.test(value);
         },
         datetime: function (obj) {
