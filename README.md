@@ -1,6 +1,9 @@
 # CEValidator
 HTML Cross-browser form validator
 
+## Examples:
+https://caioedut.github.io/cevalidator/
+
 ## How to use
 
 ### Automatic validation
