@@ -1,0 +1,229 @@
+<html>
+<head>
+    <meta http-equiv="Content-type" content="text/html;charset=utf-8"/>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="../cevalidator.min.js"></script>
+
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
+
+    <script>
+        $(function () {
+            $('form').submit(function (e) {
+                e.preventDefault();
+                if ($(this).validate()) {
+                    alert("Input is valid");
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+
+<div class="container">
+    <div class="container-fluid">
+
+        <h1>Examples</h1>
+
+        <hr/>
+
+        <h2>Defaults</h2>
+
+        <form class="validate">
+            <h3>Required</h3>
+            <div class="input-group">
+                <input class="form-control" type="text" data-validate="required"/>
+                <div class="input-group-btn">
+                    <button class="btn btn-success" type="submit">
+                        Test
+                    </button>
+                </div>
+            </div>
+        </form>
+
+        <form class="validate">
+            <h3>Min Length</h3>
+            <div class="input-group">
+                <input class="form-control" type="text" data-validate="3"/>
+                <div class="input-group-btn">
+                    <button class="btn btn-success" type="submit">
+                        Test
+                    </button>
+                </div>
+            </div>
+        </form>
+
+        <form class="validate">
+            <h3>E-mail</h3>
+            <div class="input-group">
+                <input class="form-control" type="text" data-validate="email"/>
+                <div class="input-group-btn">
+                    <button class="btn btn-success" type="submit">
+                        Test
+                    </button>
+                </div>
+            </div>
+        </form>
+
+        <form class="validate">
+            <h3>Date</h3>
+            <div class="input-group">
+                <input class="form-control" type="text" data-validate="date"/>
+                <div class="input-group-btn">
+                    <button class="btn btn-success" type="submit">
+                        Test
+                    </button>
+                </div>
+            </div>
+        </form>
+
+        <form class="validate">
+            <h3>Time</h3>
+            <div class="input-group">
+                <input class="form-control" type="text" data-validate="time"/>
+                <div class="input-group-btn">
+                    <button class="btn btn-success" type="submit">
+                        Test
+                    </button>
+                </div>
+            </div>
+        </form>
+
+        <form class="validate">
+            <h3>Datetime</h3>
+            <div class="input-group">
+                <input class="form-control" type="text" data-validate="datetime"/>
+                <div class="input-group-btn">
+                    <button class="btn btn-success" type="submit">
+                        Test
+                    </button>
+                </div>
+            </div>
+        </form>
+
+        <form class="validate">
+            <h3>CPF</h3>
+            <div class="input-group">
+                <input class="form-control" type="text" data-validate="cpf"/>
+                <div class="input-group-btn">
+                    <button class="btn btn-success" type="submit">
+                        Test
+                    </button>
+                </div>
+            </div>
+        </form>
+
+        <form class="validate">
+            <h3>CNPJ</h3>
+            <div class="input-group">
+                <input class="form-control" type="text" data-validate="cnpj"/>
+                <div class="input-group-btn">
+                    <button class="btn btn-success" type="submit">
+                        Test
+                    </button>
+                </div>
+            </div>
+        </form>
+
+        <form class="validate">
+            <h3>Phone</h3>
+            <div class="input-group">
+                <input class="form-control" type="text" data-validate="phone"/>
+                <div class="input-group-btn">
+                    <button class="btn btn-success" type="submit">
+                        Test
+                    </button>
+                </div>
+            </div>
+        </form>
+
+        <form class="validate">
+            <h3>Numeric</h3>
+            <div class="input-group">
+                <input class="form-control" type="text" data-validate="numeric"/>
+                <div class="input-group-btn">
+                    <button class="btn btn-success" type="submit">
+                        Test
+                    </button>
+                </div>
+            </div>
+        </form>
+
+        <form class="validate">
+            <h3>CEP</h3>
+            <div class="input-group">
+                <input class="form-control" type="text" data-validate="cep"/>
+                <div class="input-group-btn">
+                    <button class="btn btn-success" type="submit">
+                        Test
+                    </button>
+                </div>
+            </div>
+        </form>
+
+        <form class="validate">
+            <h3>URL</h3>
+            <div class="input-group">
+                <input class="form-control" type="text" data-validate="url"/>
+                <div class="input-group-btn">
+                    <button class="btn btn-success" type="submit">
+                        Test
+                    </button>
+                </div>
+            </div>
+        </form>
+
+        <form class="validate">
+            <h3>Decimal</h3>
+            <div class="input-group">
+                <input class="form-control" type="text" data-validate="decimal"/>
+                <div class="input-group-btn">
+                    <button class="btn btn-success" type="submit">
+                        Test
+                    </button>
+                </div>
+            </div>
+        </form>
+
+        <form class="validate">
+            <h3>Match</h3>
+            <div class="input-group">
+                <div class="row">
+                    <div class="col-xs-6">
+                        <input class="form-control" type="password" name="pass1" data-validate="6"/>
+                    </div>
+                    <div class="col-xs-6">
+                        <input class="form-control" type="password" name="pass2" data-validate="match('pass1')"/>
+                    </div>
+                </div>
+                <div class="input-group-btn">
+                    <button class="btn btn-success" type="submit">
+                        Test
+                    </button>
+                </div>
+            </div>
+        </form>
+
+        <form class="validate">
+            <h3>
+                Regex <br/>
+                <small>Example: first and last name</small>
+            </h3>
+            <div class="input-group">
+                <input class="form-control" type="text" data-validate="^([a-zA-Zà-úÀ-Ú0-9']+)(\s+)([a-zA-Zà-úÀ-Ú0-9']+.*)$" data-message="Type your first and last name"/>
+                <div class="input-group-btn">
+                    <button class="btn btn-success" type="submit">
+                        Test
+                    </button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>
+
+<hr/>
+
+</body>
+</html>
