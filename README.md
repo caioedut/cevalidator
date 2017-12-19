@@ -2,7 +2,7 @@
 HTML Cross-browser form validator
 
 ## Examples:
-https://caioedut.github.io/cevalidator/
+https://caioedut.github.io/cevalidator/docs
 
 ## How to use
 
